@@ -13,7 +13,7 @@
         target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
         if (target.length) {
           $('html, body').animate({
-            scrollTop: (target.offset().top - 71)
+            scrollTop: (target.offset().top)
           }, 1000, "easeInOutExpo");
           return false;
         }
@@ -66,4 +66,36 @@
     });
   
   })(jQuery); // End of use strict
-  
+
+
+function createTable()
+{
+  var num_rows = document.getElementById('rows').value;
+  var num_cols = document.getElementById('cols').value;
+  var theader = '<table class="table">\n';
+  var tbody = '';
+  for (var k=-1;k<num_cols;k++)
+  {
+    theader += '<th>';
+    if (k==-1){theader += '#';}
+    else{theader += k+1;}
+    theader += '</th>';
+  }  
+
+  for( var i=0; i<num_rows;i++)
+  {
+      tbody += '<tr>';
+      tbody += '<th>';
+      tbody += i+1;
+      tbody += '</th\n>';
+      for( var j=0; j<num_cols;j++)
+      {
+          tbody += '<td>';
+          tbody += '<input class="form-control mywidth" type="number" id="r' + i + 'c' + j + '" name="r' + i + 'c' + j + '" form="my_form" />';
+          tbody += '</td\n>';
+      }
+      tbody += '</tr>\n';
+  }
+  var tfooter = '</table>';
+  document.getElementById('wrapper').innerHTML = theader + tbody + tfooter;
+}
